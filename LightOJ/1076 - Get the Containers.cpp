@@ -33,5 +33,5 @@ int main()
         }
         cout << "Case " << i << ": " << l << endl;
     }
- 
+
 }
