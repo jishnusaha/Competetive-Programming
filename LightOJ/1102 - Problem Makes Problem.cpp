@@ -1,8 +1,9 @@
 /*
-	catalan number
+    idea:
+        stars and bar method.
+ 
 */
-
-
+ 
 #include<bits/stdc++.h>
 using namespace std;
  
@@ -53,67 +54,42 @@ using namespace std;
  
 #define writefile ofstream output; output.open("output.txt");
  
-ll ps[102240];
-ll p=0;
-ll limit=1e10;
-set<ll> myset;
-ll fact[102240];
-ll mod=1e8+7;
-void init()
-{
-    for(ll i=2;i*i<=limit;i++)
-    {
-        for(ll j=i*i;j<=limit;j*=i)
-        {
-            myset.insert(j);
-        }
-    }
-    p=0;
-    fact[p]=1;
-    for(set<ll> :: iterator it=myset.begin();it!=myset.end();it++)
-    {
-        ps[p++]=*it;
-        fact[p]=fact[p-1]*p;
-        fact[p]%=mod;
-    }
-}
+#define limit 2*1000011
+#define mod 1000000007
+ll fact[limit];
  
- 
-long long big_mod(long long b,long long p)
+ll big_mod(ll b,ll p)
 {
-    ll m=mod;
+    if(b==1) return 1;
     if(b==0) return 0;
-    if(p==1) return b%m;
+    if(p==1) return b%mod;
     if(p==0) return 1;
-    long long r=big_mod(b,p/2);
+    ll r=big_mod(b,p/2);
     r*=r;
-    r%=m;
+    r%=mod;
     if(p&1) r*=b;
-    r%=m;
+    r%=mod;
     return r;
- 
 }
+ 
 int main()
 {
-    init();
+    fact[0]=1;
+    for(int i=1;i<limit;i++)
+    {
+        fact[i]=fact[i-1]*i;
+        fact[i]%=mod;
+    }
     int t;
     sfi(t);
     tloop(t)
     {
-        ll a,b,c;
-        sfll(a,b);
-        c=upper_bound(ps,ps+p,b)-upper_bound(ps,ps+p,a-1);
+        int n,k;
+        sfii(n,k);
+        ll ans=fact[n+k-1];
+        ans*=big_mod( (fact[k-1]*fact[n]) % mod,mod-2 );
+        ans%=mod;
         casenos;
-        if(!c)
-        {
-            pfie(0);
-            continue;
-        }
-        ll ans=fact[2*c];
-        ans*=big_mod(fact[c],mod-2);
-        ans%=mod;
-        ans*=big_mod(fact[c+1],mod-2);
-        ans%=mod;
         pfle(ans);
     }
 }
