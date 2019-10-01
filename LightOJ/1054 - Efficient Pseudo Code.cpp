@@ -1,7 +1,9 @@
 /*
 	number of divisor will be the ans without 1
+	
+	modular arithmathic problem
+	finding divisiors
 */
-
 
 #include<bits/stdc++.h>
 using namespace std;
