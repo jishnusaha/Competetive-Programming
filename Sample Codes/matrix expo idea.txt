@@ -1,0 +1,7 @@
+for matrix exponantial, if we made our F={f(n),f(n-1),f(n-2).....f(n-k)} and if we want f(q) 
+then we will get power of M up to q-n means M^(q-n)
+
+
+
+
+(q>n as we know up to n, we don't need to calculate f(n)) 

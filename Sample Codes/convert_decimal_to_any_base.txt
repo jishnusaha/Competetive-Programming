@@ -1,0 +1,34 @@
+string convert;
+
+void decimal_to_any_base(long long n,int b)
+{
+    convert="";
+    if(n<b)
+    {
+         if(n<=9)
+         {
+             convert+=(char)('0'+n);
+         }
+         else
+         {
+             char c='A'+(n-10);
+             convert+=c;
+         }
+
+         return ;
+    }
+    else
+    {
+        decimal_to_any_base(n/b,b);
+        long long mod= n%b;
+        if(mod<=9)
+        {
+            convert+=(char)('0'+mod);
+        }
+        else
+        {
+            char c='A'+(mod-10);
+            convert+=c;
+        }
+    }
+}

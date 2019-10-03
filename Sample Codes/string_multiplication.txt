@@ -1,0 +1,70 @@
+
+string string_summation(string s1,string s2)
+{
+    int i=s1.size()-1,j=s2.size()-1,p=0;
+    string ans="";
+    for(;j>=0&& i>=0;i--,j--)
+    {
+        int a=(int) (s1[i]-'0');
+        int b=(int) (s2[j]-'0');
+        p+=a+b;
+        ans+=(char)( (p%10)+'0' );
+        p/=10;
+
+    }
+    if(s1.size()>s2.size())
+    {
+        for(;i>=0;i--)
+        {
+            int a=(int) (s1[i]-'0');
+            p+=a;
+            ans+=(char)( (p%10)+'0' );
+            p/=10;
+        }
+    }
+    else
+    {
+        for(;j>=0;j--)
+        {
+            int b=(int) (s2[j]-'0');
+            p+=b;
+            ans+=(char)( (p%10)+'0' );
+            p/=10;
+        }
+    }
+    if(p!=0) ans+=(char)(p+'0');
+    reverse(ans.begin(),ans.end());
+    return ans;
+}
+
+string string_multiplication(string s1,string s2)
+{
+    string summation function is needed
+    string ans[s2.size()],zero="";
+    for(int i=s2.size()-1;i>=0;i--)
+    {
+        string temp=zero;
+        int p=0,a=(int)(s2[i]-'0' );
+        for(int j=s1.size()-1;j>=0;j--)
+        {
+            int b=(int)(s1[j]-'0' );
+            p+=(a*b);
+            temp+=(char) ( (p%10)+'0');
+            p/=10;
+        }
+        while(p)
+        {
+            temp+=(char) ( (p%10)+'0');
+            p/=10;
+        }
+        reverse(temp.begin(),temp.end());
+        ans[i]=temp;
+        zero+='0';
+    }
+    string result=ans[0];
+    for(int i=1;i<s2.size();i++)
+    {
+        result=string_summation(result,ans[i]);
+    }
+    return result;
+}

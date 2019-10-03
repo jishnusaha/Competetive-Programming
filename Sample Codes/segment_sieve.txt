@@ -1,0 +1,31 @@
+const int segment_range=101010;
+int segment_primes_status[segment_range];
+
+void segment_sieve(long long low,long long high)
+{
+    in prime array we must store all prime values <=sqrt(maximum input value)
+    we can do int using sieve
+
+    for(int i=0;i<segment_range;i++) segment_primes_status[i]=0;
+
+    int range=high-low+1;
+    int sqrt_high=sqrt(high);
+
+    for(int p=1;prime[p]<=sqrt_high && p<prime.size();p++)
+    {
+        ///computing the first value in range [low,high] divisible by prime[p]
+        long long i=low/prime[p];
+        i*=prime[p];
+        if(i<low) i+=prime[p];
+        if(i==prime[p]) i+=prime[p];
+
+        if(!(i&1)) i+=prime[p]; ///we will not mark the even. because they are known not prime. but be carefull for 2 
+        
+	for(;i<=high;i+=2*prime[p])
+        {
+            segment_primes_status[i-low]=1;
+        }
+    }
+    if(low==1) segment_primes_status[0]=1;
+
+}

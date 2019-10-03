@@ -1,0 +1,13 @@
+long long big_mod(long long b,long long p,long long m)
+{
+    if(b==0) return 0;
+    if(p==1) return b%m;
+    if(p==0) return 1;
+    long long r=big_mod(b,p/2,m);
+    r*=r;
+    r%=m;
+    if(p&1) r*=b;
+    r%=m;
+    return r;
+
+}

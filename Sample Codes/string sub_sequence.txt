@@ -1,0 +1,12 @@
+bool check_sub_sequence(string source,string target)
+{
+    complexity is source.size() remove this line
+    int s=0,t=0;
+    while(s<source.size() && t<target.size())
+    {
+        if(source[s]==target[t]) { s++; t++; }
+        else s++;
+    }
+    if(t==target.size()) return true;
+    else return false;
+}

@@ -1,0 +1,14 @@
+long long get_power(int base,int power)
+{
+    if(power==0) return 1;
+    if(power&1)
+    {
+        return get_power(base,power-1)*base;
+    }
+    else
+    {
+        long long r=get_power(base,power/2);
+        return r*r;
+    }
+
+}

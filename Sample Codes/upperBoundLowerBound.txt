@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int h[10]={4,5,5,6,6,6,8,8,9,10};
+    int n;
+    while(cin >> n)
+    {
+        cout << n << " : ";
+        cout << "lower bound : "<<lower_bound(h,h+10,n)-h;
+
+        cout << "\n\tupper bound : "<< upper_bound(h,h+10,n)-h << endl;
+    }
+}
+
+upper bound: immediate bigger value's left most position
+lower bound:
+	if found: left most position of the value
+	if not found: immediate bigger value's left most position
+
+/*
+3 : lower bound : 0
+	upper bound : 0
+4 : lower bound : 0
+	upper bound : 1
+6 : lower bound : 3
+	upper bound : 6
+7 : lower bound : 6
+	upper bound : 6
+10 : lower bound : 9
+	upper bound : 10
+14 : lower bound : 10
+	upper bound : 10
+
+*
+
+
+
+note:	upper_bound(arr,arr+arr.size(),search ) gives how many number <=search 
+	upper_bound(arr,arr+arr.size(),search-1 ) gives how many number <=search-1
+		
+		includes duplicate values of search/search-1
+
+
+total number in a array incluing a and b (a<b) is,
+	upper_bound(arr,arr+size of arr,b)-upper_bound(arr,arr+size of arr,a-1);
+
+
+
+
+

@@ -1,0 +1,14 @@
+int hole[10]={1,0,0,0,1,0,1,0,2,1};
+
+int count_hole(long long n)
+{
+    int sum=0;
+    if(n==0) return sum+1;
+    while(n)
+    {
+        long long r=n%10;
+        sum+=hole[r];
+        n/=10;
+    }
+    return sum;
+}

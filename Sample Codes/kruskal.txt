@@ -1,0 +1,67 @@
+#define mx_node 100001
+struct e{
+    int u,v,cost;
+
+}edges[mx_node];
+bool cmpr(e b, e a)
+{
+    return b.cost<a.cost;
+}
+
+int total_edge,total_node;
+
+struct node{
+    int vartex,cost;
+};
+vector< node >spanning_tree[mx_node];
+
+struct s{
+    int parent,rank_;
+}subset[mx_node];
+
+int find_root(int x)
+{
+    if(subset[x].parent!=x)
+    {
+        subset[x].parent=find_root(subset[x].parent);
+    }
+    return subset[x].parent;
+}
+bool union_(int p,int q)
+{
+    int proot=find_root(p);
+    int qroot=find_root(q);
+
+    if(proot==qroot) return false;
+
+    if(subset[proot].rank_>subset[qroot].rank_) subset[qroot].parent=proot;
+    if(subset[proot].rank_<subset[qroot].rank_) subset[proot].parent=qroot;
+
+    if(subset[proot].rank_==subset[qroot].rank_)
+    {
+        subset[qroot].parent=proot;
+        subset[proot].rank_++;
+    }
+
+    return true;
+}
+
+void kruskal()
+{
+    sort(edges,edges+total_edge,cmpr);
+
+    for(int i=0;i<=total_node;i++)
+    {
+        subset[i].parent=i;
+        subset[i].rank_=0;
+    }
+
+    for(int i=0;i<total_edge;i++)
+    {
+        if(union_(edges[i].u,edges[i].v)) ///if union possible && no cycle
+        {
+            spanning_tree[ edges[i].u ].pb( {edges[i].v,edges[i].cost  } );
+            spanning_tree[ edges[i].v ].pb( {edges[i].u,edges[i].cost  } );
+        }
+    }
+}

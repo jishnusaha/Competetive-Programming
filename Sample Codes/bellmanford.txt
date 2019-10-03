@@ -1,0 +1,52 @@
+#define mx_node 201
+
+int total_node,total_edge;
+
+struct s{
+    int u,v,cost;
+};
+vector< s >edges;
+int distance_from_src[mx_node];
+
+void print()
+{
+    nl;
+    loop(1,total_node) pfis(lc);
+    nl;
+    loop(1,total_node) pfis(distance_from_src[lc]);
+    nl;
+
+}
+
+bool bellmanford(int src)
+{
+    for(int i=1;i<=total_node;i++) distance_from_src[i]=INT_MAX;
+
+    distance_from_src[src]=0;
+    int u,v,cost;
+    bool negetive_cycle=false;
+    for(int p=1;p<total_node;p++)
+    {
+        for(int i=0;i<edges.size();i++)
+        {
+            u=edges[i].u,v=edges[i].v ,cost=edges[i].cost;
+            if(distance_from_src[v]>distance_from_src[u]+cost && distance_from_src[u]!=INT_MAX)
+            {
+                distance_from_src[v]=distance_from_src[u]+cost;
+            }
+        }
+    }
+
+    for(int i=0;i<edges.size();i++)
+    {
+        u=edges[i].u,v=edges[i].v ,cost=edges[i].cost;
+        if(distance_from_src[v]>distance_from_src[u]+cost)
+        {
+            negetive_cycle=true;
+            break;
+        }
+    }
+    return negetive_cycle;
+
+}
+

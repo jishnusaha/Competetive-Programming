@@ -1,0 +1,16 @@
+
+10:
+bus com
+spdm
+sp2
+
+11:
+eng mngm
+aos
+
+12:
+csmath
+hci
+
+
+intern

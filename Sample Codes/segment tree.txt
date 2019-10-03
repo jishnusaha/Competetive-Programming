@@ -1,0 +1,145 @@
+#define mx 100021
+int arr[mx];
+int tree[mx * 3];
+void init_sum(int node, int b, int e)
+{
+    if (b == e) {
+        tree[node] = arr[b];
+        return;
+    }
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    init_sum(Left, b, mid);
+    init_sum(Right, mid + 1, e);
+    tree[node] = tree[Left] + tree[Right];
+}
+int query_sum(int node, int b, int e, int i, int j)
+{
+    if (i > e || j < b) return 0;
+    if (b >= i && e <= j) return tree[node];
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    int p1 = query_sum(Left, b, mid, i, j);
+    int p2 = query_sum(Right, mid + 1, e, i, j);
+    return p1 + p2;
+}
+void update_sum(int node, int b, int e, int i, int newvalue)
+{
+    if (i > e || i < b)return;
+    if (b >= i && e <= i)
+    {
+        tree[node] = newvalue;
+        return;
+    }
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    update_sum(Left, b, mid, i, newvalue);
+    update_sum(Right, mid + 1, e, i, newvalue);
+    tree[node] = tree[Left] + tree[Right];
+}
+
+
+
+
+
+
+
+
+
+
+
+void init_min(int node, int b, int e)
+{
+    if (b == e) {
+        tree[node] = arr[b];
+        return;
+    }
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    init_min(Left, b, mid);
+    init_min(Right, mid + 1, e);
+    tree[node] =min( tree[Left] , tree[Right]);
+}
+int query_min(int node, int b, int e, int i, int j)
+{
+    if (i > e || j < b) return INT_MAX;
+    if (b >= i && e <= j) return tree[node];
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    int p1 = query_min(Left, b, mid, i, j);
+    int p2 = query_min(Right, mid + 1, e, i, j);
+    return min(p1,p2);
+}
+void update_min(int node, int b, int e, int i, int newvalue)
+{
+    if (i > e || i < b)return;
+    if (b >= i && e <= i)
+    {
+        tree[node] = newvalue;
+        return;
+    }
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    update_min(Left, b, mid, i, newvalue);
+    update_min(Right, mid + 1, e, i, newvalue);
+    tree[node] = min( tree[Left] , tree[Right]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+void init_max(int node, int b, int e)
+{
+    if (b == e) {
+        tree[node] = arr[b];
+        return;
+    }
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    init_max(Left, b, mid);
+    init_max(Right, mid + 1, e);
+    tree[node] =max( tree[Left] , tree[Right]);
+}
+int query_max(int node, int b, int e, int i, int j)
+{
+    if (i > e || j < b) return INT_MIN;
+    if (b >= i && e <= j) return tree[node];
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    int p1 = query_max(Left, b, mid, i, j);
+    int p2 = query_max(Right, mid + 1, e, i, j);
+    return max(p1,p2);
+
+}
+void update_max(int node, int b, int e, int i, int newvalue)
+{
+    if (i > e || i < b)return;
+    if (b >= i && e <= i)
+    {
+        tree[node] = newvalue;
+        return;
+    }
+    int Left = node * 2;
+    int Right = node * 2 + 1;
+    int mid = (b + e) / 2;
+    update_max(Left, b, mid, i, newvalue);
+    update_max(Right, mid + 1, e, i, newvalue);
+    tree[node] = max( tree[Left] , tree[Right]);
+}

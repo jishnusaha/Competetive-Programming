@@ -1,0 +1,2 @@
+bool compare(second_in_comparison,first_in_comparison) 
+return true if second one will go before first one

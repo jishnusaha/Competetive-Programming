@@ -1,0 +1,68 @@
+flag_name_id["Algeria"]=1;
+        flag_name_id["Armenia"]=2;
+        flag_name_id["Austria"]=3;
+        flag_name_id["Azerbaijan"]=4;
+        flag_name_id["Bangladesh"]=5;
+        flag_name_id["Bahamas"]=6;
+        flag_name_id["Bahrain"]=7;
+        flag_name_id["Belgium"]=8;
+        flag_name_id["Cameroon"]=9;
+        flag_name_id["Chile"]=10;
+        flag_name_id["Colombia"]=11;
+        flag_name_id["Denmark"]=12;
+        flag_name_id["Djibouti"]=13;
+        flag_name_id["Ethopia"]=14;
+        flag_name_id["Estonia"]=15;
+        flag_name_id["Finland"]=16;
+        flag_name_id["France"]=17;
+        flag_name_id["Germany"]=18;
+        flag_name_id["Ghana"]=19;
+        flag_name_id["Guinea"]=20;
+        flag_name_id["Honduras"]=21;
+        flag_name_id["Hungary"]=22;
+        flag_name_id["Iceland"]=23;
+        flag_name_id["Indonesia"]=24;
+        flag_name_id["Ireland"]=25;
+        flag_name_id["IvoryCoast"]=26;
+        flag_name_id["Japan"]=27;
+        flag_name_id["Jordan"]=28;
+        flag_name_id["Kuwait"]=29;
+        flag_name_id["Latvia"]=30;
+        flag_name_id["Liberia"]=31;
+        flag_name_id["Libya"]=32;
+        flag_name_id["Mali"]=33;
+        flag_name_id["Maldives"]=34;
+        flag_name_id["Mayanmar"]=35;
+        flag_name_id["Netherlands"]=36;
+        flag_name_id["Nigeria"]=37;
+        flag_name_id["Norway"]=38;
+        flag_name_id["Oman"]=39;
+        flag_name_id["Pakistan"]=40;
+        flag_name_id["Palestine"]=41;
+        flag_name_id["Poland"]=42;
+        flag_name_id["Qatar"]=43;
+        flag_name_id["russia"]=44;
+        flag_name_id["Romania"]=46;
+        flag_name_id["Senegal"]=47;
+        flag_name_id["Somalia"]=48;
+        flag_name_id["Switzerland"]=49;
+        flag_name_id["Tanzania"]=50;
+        flag_name_id["Thailand"]=51;
+        flag_name_id["Tunisia"]=52;
+        flag_name_id["UAE"]=53;
+        flag_name_id["UK"]=54;
+        flag_name_id["Ukraine"]=55;
+        flag_name_id["Vietnam"]=56;
+        flag_name_id["Yemen"]=57;
+
+
+
+
+
+
+
+
+
+
+
+

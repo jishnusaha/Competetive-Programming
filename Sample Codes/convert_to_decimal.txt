@@ -1,0 +1,18 @@
+long long convert_to_decimal(string p,int original_base)
+{
+    long long value=0;
+    int c=0;
+    for(int i=p.size()-1;i>=0;i--)
+    {
+        long long k;
+        if( p[i]<='9') k=(long long)(p[i]-'0');
+        else
+        {
+            k =(int) (p[i]-'A') +1;
+        }
+        long long sub=get_power(original_base,c);
+        value+=(k*sub );
+        c++;
+    }
+    return value;
+}

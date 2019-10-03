@@ -1,0 +1,33 @@
+#define mx_node 1000
+vector< pair<int,int> >adj_list[mx_node];
+
+bool popped[mx_node];
+int distance_from_source[mx_node];
+void Dijkstra(int src)
+{
+    ///this function will store shortest distance from src to all reachable node 
+    priority_queue< pair<int,int> > q;
+    q.push({-0,src} ); ///cost,node
+    distance_from_source[src]=0;
+    
+    while(!q.empty())
+    {
+        int src_to_u=-q.top().first;
+        int u=q.top().second;
+        q.pop();
+        
+        popped[u]=true;
+        
+        for(int i=0;i<adj_list[u].size();i++)
+        {
+            int v=adj_list[u][i].first;
+            int u_to_v=adj_list[u][i].second;
+            
+            if( src_to_u+u_to_v<distance_from_source[v] && !popped[v] )
+            {
+                distance_from_source[v]=src_to_u+u_to_v;
+                q.push({-distance_from_source[v],v});
+            }
+        }
+    }
+}

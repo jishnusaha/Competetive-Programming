@@ -1,0 +1,19 @@
+double transform_axis(double &xt,double &yt,double angle,double originx,double originy)
+{
+    ///follow these notes:
+    angle must be in radian
+    originx,originy is the value of the new transformed axis's origin point
+    and xt,yt is the point to be transformed
+    
+    if you want to retransform it to the former axis system then just pre calculate 
+    the fromer origin firstly.if, former origin is (0,0) and new origin(3,14) just use those line
+    double formerx=0,formery=0;
+    transform_axis(formerx,formery,atan(3),3,14);
+     
+     
+     ///CODE START HERE
+    double xxt= (xt-originx)*cos(angle) + (yt - originy) *sin (angle);
+    double yyt= (yt - originy) *cos(angle)- (xt - originx)*sin (angle);
+    yt=yyt; xt=xxt;
+}
+

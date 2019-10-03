@@ -1,0 +1,19 @@
+
+long long gcd(long long a,long long b)
+{
+    ///euclid rule
+    long long gcd,t;
+    if (a == 0) gcd = b;
+    else if (b == 0) gcd = a;
+    else
+    {
+        while(b != 0)
+        {
+            t = b;
+            b = a % b;
+            a = t;
+        }
+        gcd = a;
+     }
+     return gcd;
+}

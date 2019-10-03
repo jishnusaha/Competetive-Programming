@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+#define loop(i,n) for(int lc=i;lc<=n;lc++)
+#define tloop(tn) for(int tlc=1;tlc<=tn;tlc++)
+#define loop2(i2,n2) for(int lc2=i2;lc2<=n2;lc2++)
+#define bloop(n,bn) for(int blc=n;blc>=bn;blc--)
+#define il() while(true)
+#define pi acos(-1)
+#define rad_to_deg(angl) ((180*angl)/pi)
+#define ll long long
+#define caseno printf("Case %d: ",tlc);
+
+#define sfi(def_var) scanf("%d",&def_var)
+#define sfii(def_var,def_var2) scanf("%d %d",&def_var,&def_var2)
+#define sfll(def_var,def_var2) scanf("%lld %lld",&def_var,&def_var2)
+
+#define sfl(def_var) scanf("%lld",&def_var)
+#define sfd(def_var) scanf("%lf",&def_var)
+#define sfs(def_var) scanf("%s",&def_var)
+
+#define pfie(def_var) printf("%d\n",def_var)
+#define pfi(def_var) printf("%d",def_var)
+#define pfl(def_var) printf("%lld",def_var)
+#define pfd(def_var) printf("%lf",def_var)
+#define nl printf("\n");
+
+const int mx=100000;
+
+long long a[mx],n;
+long long dp[mx],lis[mx];
+
+long long bs(long long l,long long h,long long value)
+{
+    while(h>=l)
+    {
+        long long mid=(l+h)/2;
+        if(dp[mid]<value) l=mid+1;
+        else h=mid-1;
+    }
+    return l;
+}
+void print()
+{
+    nl;
+    //for(int i=1;i<n;i++) cout << i << ' ';
+    //nl;
+    for(int i=1;i<=n;i++) cout << a[i] << ' ';
+    cout << "  <=a \n";
+    for(int i=1;i<=n;i++) cout << dp[i] << ' ';
+    cout << "  <=dp \n";
+    for(int i=1;i<=n;i++) cout << lis[i] << ' ';
+    cout << "  <=lis \n";
+    nl;
+}
+
+int main()
+{
+    /*
+        here,
+            lis array hold's the different increasing subsequence lengths,
+            length variable holds the longest length of the subsequence(lis)
+            we can get the lis from the dp array or from the lis arry
+            moreover we can get the different increasing subsequence from lis array
+    */
+    cin >> n;
+    for(int i=1;i<=n;i++)
+    {
+        cin >> a[i];
+    }
+    for(int i=1;i<=n;i++) cout << i << ' ';
+    nl;
+
+    ll length=0;
+    int p;
+    for(int i=1;i<=n;i++)
+    {
+        //cin >> p;
+        ll k=bs(1,length,a[i]);
+        cout << "K : " << k << endl;
+        length=max(k,length);
+
+        dp[k]=a[i];
+        lis[i]=k;
+        print();
+    }
+
+/*
+14
+8 1 9 8 3 4 6 1 5 2 3 4 5 6
+*/
+}

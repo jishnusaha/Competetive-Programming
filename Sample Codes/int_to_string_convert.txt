@@ -1,0 +1,15 @@
+
+string int_to_string(long long value)
+{
+    if (value==0) return "0";
+
+    string s="";
+    while(value!=0)
+    {
+        s+=(char) ('0'+(value%10));
+        value/=10;
+    }
+    //cout << s << ' ';
+    reverse(s.begin(),s.end());///function of algorithm.h
+    return s;
+}

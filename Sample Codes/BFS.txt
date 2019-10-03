@@ -1,0 +1,35 @@
+
+int const node_size=; ///node limit given 
+pair<int,int> temp;
+bool pushed[node_size];
+
+void BFS(int source,vector< pair<int,int> > adjancency_list[])
+{
+    for(int i=0;i<node_size;i++) pushed[i]=false;
+    queue<pair<int,int> >q;
+
+    q.push( make_pair(0,source) ); make_pair(weight,node)
+    pushed[source]=true;
+
+    while(!q.empty())
+    {
+        temp=q.front(); ///for priority_queue front replaced by top();
+        q.pop();
+        int u=temp.second;
+        for(int i=0;i<adjancency_list[u].size();i++)
+        {
+            int v=adjancency_list[u][i].second;
+            int weight_u_TO_v=adjancency_list[u][i].first;
+
+            cout << v << " is connected to " << u << endl;
+            if(!pushed[v])
+            {
+                q.push( adjancency_list[u][i] );
+                cout << "pushing " << v << endl;
+                pushed[v]=true;
+            }
+        }
+	//cout << "done for " << u << endl;
+    }
+}
+

@@ -1,0 +1,39 @@
+
+return_type div_string(string divident,long long divider)
+{
+    if divider is close to long_long_max then chance to overflow in dividend
+    
+    
+    long long remainder=0;
+    string quotient;
+    bool taking_first=true,need_devide=true;
+    for(int i=0;i<divident.size();i++)
+    {
+        if(taking_first)
+        {
+            remainder=remainder*10+(int)(divident[i]-'0');
+            taking_first=false;
+        }
+        else
+        {
+            remainder=remainder*10+(int)(divident[i]-'0');
+            if(!quotient.empty())quotient+='0';
+        }
+        need_devide=true;
+        if(remainder>=divider)
+        {
+            quotient+=(char)('0'+(int)(remainder/divider));
+//            quotient=quotient*10+(remainder/divider);
+            remainder%=divider;
+            taking_first=true;
+            need_devide=false;
+        }
+    }
+    if(need_devide)
+    {
+        quotient+=(char)('0'+(int)(remainder/divider));
+        remainder%=divider;
+    }
+
+    cout <<"vagfol : "<< quotient << " vagses : " << remainder << endl;
+}

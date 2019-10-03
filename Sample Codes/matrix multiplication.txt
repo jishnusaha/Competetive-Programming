@@ -1,0 +1,28 @@
+void multiply(ll x[][],ll y[][])///say the size
+{
+    note:
+        multiplication value will be assign to first matrix
+
+    int matrix_size=;
+    ll result[matrix_size][matrix_size];
+
+
+    for(int r=0;r<matrix_size;r++)
+    {
+        for(int c=0;c<matrix_size;c++)
+        {
+            result[r][c]=0;
+            for(int s=0;s<matrix_size;s++)
+            {
+                result[r][c]+=x[r][s]*y[s][c];
+            }
+        }
+    }
+    for(int i=0;i<matrix_size;i++)
+    {
+        for(int j=0;j<matrix_size;j++)
+        {
+            x[i][j]=result[i][j];
+        }
+    }
+}

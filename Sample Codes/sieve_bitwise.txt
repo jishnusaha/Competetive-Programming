@@ -1,0 +1,46 @@
+
+const int p_limit=; ///comment out const and say the limit error will be out
+
+int status[(p_limit/32)+1];
+
+int prime[],p=0;
+void setstatus(int &n,int pos)
+{
+    n|=(1<<pos);
+}
+
+int check_status(int n,int pos)
+{
+    return n=n&(1<<pos);
+}
+
+void sieve_bitwise()
+{
+    //prime[p]=2;
+    p++;
+    int c,i;
+    int sqrtn=sqrt(p_limit);
+    for(i=3;i<=sqrtn;i+=2)
+    {
+        if(check_status(status[i>>5],i&31)==0)
+        {
+            //prime[p]=i;
+            p++;
+            for(int j=i*i;j<=p_limit;j+=2*i)
+            {
+                setstatus(status[j>>5],j&31);
+            }
+        }
+    }
+    setstatus(status[0],1);
+    for(;i<=p_limit;i+=2)
+    {
+        if(check_status(status[i>>5],i&31)==0)
+        {
+            //prime[p]=i;
+            p++;
+
+        }
+    }
+
+}

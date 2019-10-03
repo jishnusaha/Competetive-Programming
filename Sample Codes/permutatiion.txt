@@ -1,0 +1,45 @@
+int n,k,c=1;
+char permute_it[50],permutation_collection[50];;
+bool taken[50];
+void permutation_generator(int idx=0)
+{
+    if(c>k) return;
+    if(idx==n)
+    {
+        for(int j=0;j<n;j++) cout << permutation_collection[j];
+        cout << endl;
+ 
+        c++;
+        return;
+ 
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(taken[i]==false)
+        {
+            taken[i]=true;
+            permutation_collection[idx]=permute_it[i];
+            permutation_generator(idx+1);
+            taken[i]=false;
+        }
+    }
+}
+ 
+int main()
+{
+    int t;
+    cin >> t;
+    tloop(1,t)
+    {
+        cin >> n >> k;
+        loop(0,n-1)
+        {
+            permute_it[l]=(char) 'A'+l;
+            taken[l]=false;
+        }
+        caseno;
+        cout << endl;
+        permutation_generator();
+ 
+    }
+}

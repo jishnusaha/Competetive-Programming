@@ -1,0 +1,27 @@
+int factor_list[30][2],factor_count=0;
+void prime_factorization(long long n)
+{
+    factorization_sieve() must be called from main first
+    this function can be used for n<=p_limit can be used
+    ///important :: 
+        before calling this function initialize factor_count=0;
+    
+    if(n==0 || n==1) return ;
+
+    int largest_prime=status[n];
+    if(largest_prime==0) largest_prime=2;
+    int c=0;
+    while(n%largest_prime==0)
+    {
+        c++;
+        n/=largest_prime;
+    }
+    factor_list[factor_count][0]=largest_prime;
+    factor_list[factor_count][1]=c;
+    factor_count++;
+    if(!(n==0 || n==1))
+    {
+        prime_factorization(n);
+    }
+    return ;
+}

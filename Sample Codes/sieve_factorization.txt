@@ -1,0 +1,41 @@
+
+const int p_limit=; ///say limit of prime you want to generate
+int status[p_limit+1];
+int prime[],p=0;
+
+void sieve()
+{
+    note:
+    this function  store in status array by the largest prime factor of a number
+    largest prime factor of 60 is 5 then, status[60] will contain 5
+    if a number is 2^n then largest prime factor of it is 2. but it is not stored.
+    so if you get a even number p and status[p]==0 then it's largest prime factor will be 2
+
+    //prime[p]=2;
+    p++;
+    int i;
+    for(i=3;i<p_limit/2;i+=2)
+    {
+        if(status[i]==0)
+        {
+            //prime[p]=i;
+            p++;
+            for(int j=i;j<=p_limit;j+=i)
+            {
+                status[j]=i;
+            }
+        }
+    }
+    status[1]=1;
+    for(;i<=p_limit;i+=2)
+    {
+        if(status[i]==0)
+        {
+            //prime[p]=i;
+            p++;
+            status[i]=i;
+        }
+    }
+
+}
+
