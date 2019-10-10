@@ -46,7 +46,6 @@ data tree[mx*3];
 
 void init(int node,int b,int e)
 {
-//    cout << "call for node : " << node << ". b: " << b << ". e :  " << e << endl;
     if(b==e)
     {
         tree[node].one=0;
@@ -65,6 +64,7 @@ void init(int node,int b,int e)
     tree[node].two=tree[left].two+tree[right].two;
     tree[node].zero=tree[left].zero+tree[right].zero;
 }
+
 void propagate_lazy_to_child(int node,int b,int e)
 {
     if(b!=e)
@@ -95,6 +95,7 @@ void propagate_lazy_to_child(int node,int b,int e)
 int query(int node,int b,int e,int i,int j)
 {
     if(tree[node].lazy) propagate_lazy_to_child(node,b,e);
+    
     if(e<i || b>j) return 0;
     if(i<=b && j>=e) return tree[node].zero;
 
@@ -107,9 +108,11 @@ int query(int node,int b,int e,int i,int j)
     tree[node].two=tree[left].two+tree[right].two;
     return ans;
 }
+
 void update(int node,int b,int e,int i,int j)
 {
     if(tree[node].lazy) propagate_lazy_to_child(node,b,e);
+    
     if(e<i || b>j) return;
     if(i<=b && j>=e)
     {
@@ -136,46 +139,7 @@ void update(int node,int b,int e,int i,int j)
     tree[node].two=tree[left].two+tree[right].two;
 
 }
-void print(int n)
-{
-    nl;
-    loop(1,n*3)
-    {
-        if(lc<=9) cout << ' ' << lc << ' ';
-        else cout << lc << ' ';
-    }
-    nl;nl;
-    loop(1,n*3)
-    {
-        if(tree[lc].lazy<=9) cout << ' ' << tree[lc].lazy << ' ';
-        else cout << tree[lc].lazy << ' ';
 
-    }
-    cout << "< lazy";nl;
-    loop(1,n*3)
-    {
-        if(tree[lc].zero<=9) cout << ' ' << tree[lc].zero << ' ';
-        else cout << tree[lc].zero << ' ';
-
-    }
-    cout << "< zero";nl;
-    loop(1,n*3)
-    {
-        if(tree[lc].one<=9) cout << ' ' << tree[lc].one << ' ';
-        else cout << tree[lc].one << ' ';
-
-    }
-    cout << "< one";nl;
-    loop(1,n*3)
-    {
-        if(tree[lc].two<=9) cout << ' ' << tree[lc].two << ' ';
-        else cout << tree[lc].two << ' ';
-
-    }
-    cout << "< two";nl;
-
-
-}
 int main()
 {
     int t;
