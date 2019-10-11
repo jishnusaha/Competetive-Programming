@@ -1,0 +1,48 @@
+struct node {
+    bool endmark;
+    node* next[26];
+    node()
+    {
+        endmark = false;
+        for(int i=0;i<26;i++) next[i]=NULL;
+    }
+}* root;
+
+void _insert(string s)
+{
+    node* curr=root;
+    for(int i=0;i<s.size();i++)
+    {
+        int id=s[i]-'a';
+        if(curr->next[id]==NULL)
+            curr->next[id] = new node();
+        curr=curr->next[id];
+    }
+    curr->endmark = true;
+}
+bool _search(string s)
+{
+    node* curr=root;
+    for(int i=0;i<s.size();i++)
+    {
+        int id=s[i]-'a';
+        if(curr->next[id]==NULL)
+            return false;
+        curr=curr->next[id];
+    }
+    return curr->endmark;
+}
+void del(node* curr)
+{
+    for(int i=0;i<26;i++)
+    {
+        if(curr->next[i])
+            del(curr->next[i]);
+    }
+    delete (curr);
+}
+
+int main()
+{
+    root=new node();
+}
