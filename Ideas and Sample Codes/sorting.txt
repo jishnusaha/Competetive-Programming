@@ -1,2 +1,16 @@
 bool compare(second_in_comparison,first_in_comparison) 
-return true if second one will go before first one
+	return true if second one will go before first one
+
+
+
+//asc sort by cost
+struct data {
+    int u,cost,dept,parent;
+
+    bool operator<(const data& a)const
+    {
+        return cost < a.cost;
+    }
+
+
+};
