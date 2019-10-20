@@ -51,6 +51,7 @@ int lca_query(int n,int p,int q)
     }
     if(p==q) return p;
 
+    ///ekhn p  q er dept soman. ekhn amra 2 er power a upore uthte thakbo jtkhn same parent na pacchi 
     for(int i=log;i>=0;i--)
     {
         if(parent[p][i]!=-1 && parent[p][i]!=parent[q][i])
