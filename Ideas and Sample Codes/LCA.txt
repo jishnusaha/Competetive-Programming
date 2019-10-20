@@ -1,0 +1,65 @@
+void init_lca(int n)
+{
+    int root=1;///try to define it as a first number of the node in serial
+    mem(parent,-1);
+    dfs(root);
+
+
+    for(int j=1;(1<<j)<=n;j++)
+    {
+        for(int i=root;i<=n;i++)
+        {
+            if(parent[i][j-1]!=-1)
+            {
+                ///ekta node q er jnno,
+                ///q er 2^4=16th parent hocche, q er 2^3=8th parent er 2^3=8th parent
+                ///taile ekta node er 2^j th parent hocche node tar 2^j-1 parent er 2^j-1 parent
+                parent[i][j]=parent[ parent[i][j-1] ] [j-1];
+            }
+        }
+    }
+}
+
+int lca_query(int n,int p,int q)
+{
+    ///jar dept besi setake p te nicchi.
+    if(dept[p]<dept[q]) swap(p,q);
+
+    ///first amra p er dept k q er dept er soman korbo.
+    ///p er dept jehetu besi tai amder q er dept a asar jnno p er dept k komate hobe.
+    ///p er dept k amra ek ek kore na komiye 2 er power a komabo taile faster hobe kaj ta
+
+    ///ekhn p er dept er jnno amra 2 er maximum koto power ta pete pari ta ber korbo r log a rakhbo.
+    ///amra dekhbo 2^log jeno dept[p] er choto hoy, karon,
+    ///2^log hobe amra dept[p] theke maximum koto komate pari seta.
+
+    int log=1;
+    while(1)
+    {
+        if( ( 1<<(log+1) )>dept[p]) break;
+        log++;
+    }
+
+    ///amra jani, parent[p][i] te amra p er 2^i tomo parent a assign kore rekhechi.
+    ///taile parent[p][i] er dept er value jodi dept[q] er theke taile
+    ///amra p theke jump korte pari p er i tomo parent a.
+    ///evabe amra korte thakbo jtkhn p er dept q er dept er soman na hocche.
+
+    for(int i=log;i>=0;i--)
+    {
+        if(dept[p]-(1<<i) >=dept[q]) p=parent[p][i];
+    }
+    if(p==q) return p;
+
+    for(int i=log;i>=0;i--)
+    {
+        if(parent[p][i]!=-1 && parent[p][i]!=parent[q][i])
+        {
+            p=parent[p][i];
+            q=parent[q][i];
+        }
+    }
+
+    return parent[p][0];
+
+}
