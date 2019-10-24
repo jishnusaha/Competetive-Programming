@@ -2,7 +2,7 @@
     make minimum spanning tree(MST) of the given graph, work on that
 
     in lca_init we usually keep track 2^i th parent of a node
-    now for this problem we will also keep track of maximum edge between a node and its 2^i th parent
+    now for this problem we will also keep track of maximum weighted edge between a node and its 2^i th parent
 
 */
 
