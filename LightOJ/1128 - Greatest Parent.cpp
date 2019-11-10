@@ -1,8 +1,3 @@
-/*
-
-    LCA problem
-
-*/
 
 
 #include<bits/stdc++.h>
