@@ -7,10 +7,17 @@ using namespace std;
 #define loop2(i2,n2) for(int lc2=i2;lc2<=n2;lc2++)
 #define bloop(n,bn) for(int blc=n;blc>=bn;blc--)
 #define il() while(true)
+
+
 #define pi acos(-1)
 #define rad_to_deg(angl) ((180*angl)/pi)
 #define ll long long
 #define pb push_back
+
+#define pii pair< int,int >
+#define pll pair< long long, long long >
+#define pib pair< int,bool >
+
 #define casenos printf("Case %d: ",tlc);
 #define casenonl printf("Case %d:\n",tlc);
 #define mem(arr,val) memset(arr,val,sizeof(arr))
@@ -19,9 +26,12 @@ using namespace std;
 #define sfi(def_var) scanf("%d",&def_var)
 #define sfii(def_var,def_var2) scanf("%d %d",&def_var,&def_var2)
 #define sfiii(def_var,def_var2,def_var3) scanf("%d %d %d",&def_var,&def_var2,&def_var3)
+
 #define sfl(def_var) scanf("%lld",&def_var)
+#define sfll(def_var,def_var2) scanf("%lld %lld",&def_var,&def_var2)
+#define sflll(def_var,def_var2,def_var3) scanf("%lld %lld %lld",&def_var,&def_var2,&def_var3)
+
 #define sfd(def_var) scanf("%lf",&def_var)
-#define sfs(def_var) scanf("%s",&def_var)
 
 
 #define pfie(def_var) printf("%d\n",def_var)
@@ -36,13 +46,20 @@ using namespace std;
 
 #define nl printf("\n");
 
+#define casenownl output << "Case " << tlc << ":\n";
+#define casenows output << "Case " << tlc << ": ";
+
+#define READ        freopen("input.txt","r",stdin)
+#define WRITE       freopen("output.txt","w",stdout)
+#define BOOST       ios_base::sync_with_stdio(false);cin.tie(NULL)
+
+
+
 #define mx 100021
 
 struct data{
     int one=0,two=0,zero=0,lazy=0;
-};
-
-data tree[mx*3];
+}tree[mx*3];
 
 void init(int node,int b,int e)
 {
@@ -63,6 +80,7 @@ void init(int node,int b,int e)
     tree[node].one=tree[left].one+tree[right].one;
     tree[node].two=tree[left].two+tree[right].two;
     tree[node].zero=tree[left].zero+tree[right].zero;
+    tree[node].lazy=0;
 }
 
 void propagate_lazy_to_child(int node,int b,int e)
@@ -95,7 +113,7 @@ void propagate_lazy_to_child(int node,int b,int e)
 int query(int node,int b,int e,int i,int j)
 {
     if(tree[node].lazy) propagate_lazy_to_child(node,b,e);
-    
+
     if(e<i || b>j) return 0;
     if(i<=b && j>=e) return tree[node].zero;
 
@@ -103,30 +121,18 @@ int query(int node,int b,int e,int i,int j)
     int left=node*2,right=node*2+1;
     int ans=query(left,b,mid,i,j)+query(right,mid+1,e,i,j);
 
-    tree[node].one=tree[left].one+tree[right].one;
-    tree[node].zero=tree[left].zero+tree[right].zero;
-    tree[node].two=tree[left].two+tree[right].two;
     return ans;
 }
 
 void update(int node,int b,int e,int i,int j)
 {
     if(tree[node].lazy) propagate_lazy_to_child(node,b,e);
-    
+
     if(e<i || b>j) return;
     if(i<=b && j>=e)
     {
-        if(b!=e)
-        {
-            tree[node*2].lazy++;
-            tree[node*2+1].lazy++;
-            tree[node*2].lazy%=3;
-            tree[node*2+1].lazy%=3;
-        }
-        int temp=tree[node].zero;
-        tree[node].zero=tree[node].two;
-        tree[node].two=tree[node].one;
-        tree[node].one=temp;
+        tree[node].lazy++;
+        propagate_lazy_to_child(node,b,e);
         return;
     }
     int mid=(b+e)/2;
@@ -148,13 +154,7 @@ int main()
     {
         int n,q;
         sfii(n,q);
-        loop(0,mx*3-1)
-        {
-            tree[lc].lazy=0;
-            tree[lc].one=0;
-            tree[lc].two=0;
-            tree[lc].zero=0;
-        }
+
         init(1,1,n);
 
         casenonl;
@@ -163,16 +163,8 @@ int main()
             int type,i,j;
             sfiii(type,i,j);
             i++,j++;
-            if(type)
-            {
-                pfie(query(1,1,n,i,j));
-
-            }
-            else
-            {
-                update(1,1,n,i,j);
-            }
+            if(type) pfie(query(1,1,n,i,j));
+            else update(1,1,n,i,j);
         }
-
     }
 }
